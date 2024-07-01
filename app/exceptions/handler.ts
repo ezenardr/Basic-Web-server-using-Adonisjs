@@ -15,10 +15,10 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    */
   async handle(error: unknown, ctx: HttpContext) {
     if (error instanceof errors.E_ROUTE_NOT_FOUND) {
-      return {
+      return ctx.response.json({
         error: 'E_ROUTE_NOT_FOUND',
         message: 'Go to /api/hello?visitor_name={NAME}',
-      }
+      })
     }
 
     return super.handle(error, ctx)
